@@ -1,47 +1,46 @@
-const express = require('express'); 
+const express = require('express');
 const loginRouter = express.Router();
 const user = require('../data/user');
 
-loginRouter.get('/',function(req,res){
+loginRouter.get('/', function (req, res) {
 
-    res.render('login',{});
-    
+    res.render('login', {});
+
 })
 
 
-loginRouter.get("/check",function(req,res){
+loginRouter.get("/check", function (req, res) {
     var checkuser = {
-        uid:req.param("uid"),
-        pwd:req.param("pwd")
-    };
-    
-    console.log(checkuser);
-    var flag=false;
+        uid: req.params("uid"),
+        pwd: req.params("pwd")
+    }; //part#2 point 10
 
-//    var flagg = user.find((e)=>{
-       for(let i=0;i<user.length;i++){
-        
-        if(checkuser.uid==user[i].uid && checkuser.pwd==user[i].pwd)
-        {
-            
-            flag=true;
+    console.log(checkuser);
+    var flag = false;
+
+    //    var flagg = user.find((e)=>{
+    for (let i = 0; i < user.length; i++) {
+
+        if (checkuser.uid == user[i].uid && checkuser.pwd == user[i].pwd) {
+
+            flag = true;
             break;
         }
-        else{
-                flag=false;
-            }
-        };
+        else {
+            flag = false;
+        }
+    };
 
-        console.log(flag);
+    console.log(flag);
 
-if(flag==true){
-    // alert("User Verified.Click to continue");
-    res.redirect("/home")
-}
-else{
-    // alert("User Verification Failed");
-    res.redirect("/signup");
-}
+    if (flag == true) {
+        // alert("User Verified.Click to continue");
+        res.redirect("/home")
+    }
+    else {
+        // alert("User Verification Failed");
+        res.redirect("/signup");
+    }
 
 });
 

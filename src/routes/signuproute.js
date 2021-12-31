@@ -1,19 +1,19 @@
-const express = require('express'); 
+const express = require('express');
 const signupRouter = express.Router();
 const user = require('../data/user');
 
-signupRouter.get('/',function(req,res){
+signupRouter.get('/', function (req, res) {
 
-    res.render('signup',{});
-    
+    res.render('signup', {});
+
 })
 
-signupRouter.get("/adduser",function(req,res){
-    
+signupRouter.get("/adduser", function (req, res) {
+
     var newuser = {
-        "uid":req.param("uid"),
-        "pwd":req.param("pwd")
-    };
+        "uid": req.params("uid"),
+        "pwd": req.params("pwd")
+    }; //part#2 point 10
     console.log(newuser);
     user.push(newuser);
     console.log(user);
